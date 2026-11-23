@@ -26,6 +26,9 @@ function main(): void {
   if (ROAST.trim().length === 0) {
     throw new Error("roast must not be only whitespace");
   }
+  if (ROAST.includes("\n") || ROAST.includes("\r")) {
+    throw new Error("roast must be a single line");
+  }
   mkdirSync(outputDir, { recursive: true });
   const outPath = join(outputDir, "entry.txt");
   writeFileSync(outPath, ROAST, "utf8");
